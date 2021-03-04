@@ -6,25 +6,24 @@ using Data.Sql.Entities;
 namespace Forecaster.Controllers
 {
     [Route("v1/[controller]")]
-    public class DefaultController : ControllerBase
+    public class ProjectController : ControllerBase
     {
         private const string ErrorMessage = "failed to process request";
         private readonly IProjectService _projectService;
-        private readonly IReportService _reportService;
 
 
-        public DefaultController(IProjectService projectService, IReportService reportService)
+        public ProjectController(IProjectService projectService)
         {
             _projectService = projectService;
-            _reportService = reportService;
         }
 
         /// <summary>
         /// returns a collection of projects
         /// </summary>
+        /// <param name="date"></param>
         /// <returns></returns>
-        [HttpGet]
-        public  IActionResult Projects(string date)
+        [HttpGet("{date}")]
+        public  IActionResult Get(string date)
         {
            var projects =  _projectService.GetProjectsForDate(date);
            if (projects == null) return BadRequest(ErrorMessage);
@@ -37,23 +36,11 @@ namespace Forecaster.Controllers
         /// <param name="project"></param>
         /// <returns></returns>
         [HttpPost]
-        public  IActionResult Projects([FromBody]Project project)
+        public  IActionResult Update([FromBody]Project project)
         {
             if(project == null) return BadRequest(ErrorMessage);
             if (!_projectService.UpdateProject(project)) return BadRequest(ErrorMessage);
             return Ok();
-        }
-
-        /// <summary>
-        /// returns reports
-        /// </summary>
-        /// <returns></returns>
-        [HttpPut]
-        public IActionResult Reports(string startMo, string endMo)
-        {
-            var reports = _reportService.GetReportsForDate(startMo, endMo);
-            if (reports == null) return BadRequest(ErrorMessage);
-            return Ok(JsonConvert.SerializeObject(reports));
         }
     }
 }

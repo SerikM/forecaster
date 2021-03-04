@@ -12,7 +12,9 @@ class Reports extends React.Component {
             revenues: [],
             isLoading: false,
             total: 0,
-            errors: false
+            errors: false,
+            rangeStart: '02.2021',
+            rangeEnd: '03.2021'
         }
 
         this.ensureDataFetched = this.ensureDataFetched.bind(this);
@@ -34,7 +36,7 @@ class Reports extends React.Component {
     ensureDataFetched() {
         this.setLoading(true);
         const client = new httpClient();
-        return client.get(`${config.aws.api.url}${config.aws.api.path}`, { 'x-api-key': config.aws.api.key })
+        return client.get(`${config.aws.api.url}/${config.aws.api.report}/${this.state.rangeStart}/${this.state.rangeEnd}`, { 'x-api-key': config.aws.api.key })
             .then(response => {
                 this.setLoading(false);
                 if (response && response.data && response.status === 200) {

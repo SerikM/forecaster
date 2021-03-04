@@ -2,8 +2,8 @@
   "aws": {
     "api": {
       "url": "http://localhost:5000",
-      "projects": "/v1/projects",
-      "reports": "/v1/reports",
+      "project": "v1/project",
+      "report": "v1/report",
       "key": "nHtKKfZoy98mdnCM0fBYsa55UzyrXCPS4vSmELjb"
     }
   }

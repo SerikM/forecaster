@@ -33,7 +33,7 @@ class Dashboard extends React.Component {
     ensureDataFetched() {
         this.setLoading(true);
         const client = new httpClient();
-        return client.get(`${config.aws.api.url}${config.aws.api.projects}?date=${this.state.month.date}`, { 'x-api-key': config.aws.api.key })
+        return client.get(`${config.aws.api.url}/${config.aws.api.project}/${this.state.month.date}`, { 'x-api-key': config.aws.api.key })
             .then(response => {
                 this.setLoading(false);
                 if (response && response.data && response.status === 200) {
