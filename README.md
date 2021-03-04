@@ -1,17 +1,8 @@
-# Optimiser
+# Forecaster
 
-Commercial Optimiser - is an app that determinnes the optimal allocation and calculates the achieved rating score for a set of TV commercials based on several criteria. 
+Forecaster - is an app that displays details of a collection of projects from db. It allows user to update project details and create new project entries. There is  reporting feature as well 
 
-Default settings:<br/>
-- 3 demographics (Women 25-30, Men 18-35 &amp; Total People 18-40)
-- 9 commercials (each commercial has a demographic it will target)
-- 3 commercial breaks with ratings per demographic
-
-Restrictions: <br/>
-- Finance type commercials cannot go into Break 2
-- Commercials of the same type cannot be next to each other within a break
-
-The application supports all types of mobile devices and works well on desktops. The default commercials data is stored in the database and is loaded into the application at startup. The user is given the ability to enter new rating for each commercial for a corresponding brake. 
+The application supports all types of mobile devices and works well on desktops. The data is stored in the database and is loaded into the application at startup. The user is given the ability to enter new data. 
 
 
 # Architecture
@@ -27,14 +18,12 @@ The application supports all types of mobile devices and works well on desktops.
 ## Lambda api
 - The api is based on the .NET Core 3.1 AWS Lambda template. The logic is implemented using C#.
 - The api is run as a serverless application.
-- The api uses the serverless database technology `DynamoDb` as it's main storage provider
-- All the default applicartion data like ratrings, commercial ids etc are retrieved from DynamoDb at startup.
-- The api uses two DynamoDb data tables for its operation. The tables' get provisioned during the initial deployment of the api (procedure is decribed below). 
+- The api uses SQL database as it's main storage provider
 
 
 ## UI app build instructions
 - The app can be built and run locally
-> to start the app navigate to .\optimizer\app directory and run
+> to start the app navigate to .\forecaster\app directory and run
 ```shell
 npm run start
 ```
@@ -46,13 +35,13 @@ npm run start
 
 
 ## API build instructions
-> to build and package the lambda project locally navigate to .\optimiser\api\src\optimiser directory and run
+> to build and package the lambda project locally navigate to .\forecaster\api\src\forecaster directory and run
 ```shell
 dotnet lambda package 
 ```
-> this command will zip the packag into \Optimiser-api\src\Optimiser\bin\Release\netcoreapp3.1\Optimiser.zip
+> this command will zip the packag into \Forecaster-api\src\Forecaster\bin\Release\netcoreapp3.1\Forecaster.zip
 
-> to run tests navigate to .\Optimiser-api\test\Optimiser.Tests directory and run
+> to run tests navigate to .\Forecaster-api\test\Forecaster.Tests directory and run
 ```shell
  dotnet test
 ```
@@ -60,27 +49,24 @@ dotnet lambda package
 ## API deployment instructions
 > In order to use commands given below you'll need to replace [my-bucket-name] with the name of your own s3 bucket
 
-> Create an s3 bucket for the source code of your lambda by running following command from \optimiser\api\src\Optimiser directory: 
+> Create an s3 bucket for the source code of your lambda by running following command from \forecaster\api\src\Forecaster directory: 
 ```shell
 aws s3 mb s3://[my-bucket-name] --region ap-southeast-2
 ```
 
 > To prepare the package for the deployment to CloudFormation and to transform the template.yml run:
 ```shell
-aws cloudformation package --template-file ./template.yml --output-template-file sam-template.yml --s3-bucket optimiser-api
+aws cloudformation package --template-file ./template.yml --output-template-file sam-template.yml --s3-bucket forecaster-api
 ```
 
 > To deploy the packaged source code to aws lambda using CF run:
 ```shell
-aws cloudformation deploy --template-file ./sam-template.yml --stack-name optimiser-api --capabilities CAPABILITY_IAM
+aws cloudformation deploy --template-file ./sam-template.yml --stack-name forecaster-api --capabilities CAPABILITY_IAM
 ```
 
-## DynamoDb data seed instructions
-> initially the data tables are provisioned empty. In order to populate them with data the PUT api can be called, provided the api where lambda has been deployed is known. This will populate the tables with default data defined in code.
-```shell
-PUT https://[lambda-hostname]/Prod/v1/default
-```
+## SQL
+> prepare sql database and update connection string
   
   
 # Testing instructions.
- Currently the app is deployed here <a href="http://optimiser-app.s3-website-ap-southeast-2.amazonaws.com" target="_blank">here</a>.
+ the app will be deployed here <a href="http://forecaster-app.s3-website-ap-southeast-2.amazonaws.com" target="_blank">here</a>.
