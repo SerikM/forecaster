@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: This is a lambda service that returns projects data
+Resources:
+  GetProjectsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: Forecaster::Forecaster.LambdaEntryPoint::FunctionHandlerAsync
+      Runtime: dotnetcore3.1
+      CodeUri: bin/Release/netcoreapp3.1/Forecaster.zip
+      Policies:
+      - AmazonDynamoDBFullAccess
+      Timeout: 60
+      MemorySize: 3008
+      Environment:
+        Variables:
+          S3_BUCKET: forecastercfsambucket
+      Events:
+        ProxyResource:
+          Type: Api
+          Properties:
+            Path: "/{proxy+}"
+            Method: ANY
+
+ 
