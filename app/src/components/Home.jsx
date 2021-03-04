@@ -4,7 +4,6 @@ import httpClient from '../httpClient';
 import Spinner from './Spinner';
 const config = require('../config.json');
 
-
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -15,11 +14,9 @@ class Home extends React.Component {
             month: { date: '01.2020', name: 'January' },
             errors: false
         }
-
         this.ensureDataFetched = this.ensureDataFetched.bind(this);
         this.setLoading = this.setLoading.bind(this);
     }
-
 
     setLoading(isLoading) {
         this.setState({ isLoading });
@@ -47,7 +44,6 @@ class Home extends React.Component {
             });
     }
 
-
     render() {
         return (
             <React.Fragment>
@@ -61,20 +57,15 @@ class Home extends React.Component {
                         }
                     </div>
                 </div>
-
                 <div className="main lower">
                     <React.Fragment>
-
-
                         <div className="row row-header">
                             <div className="col-2">Project</div>
                             <div className="col-2 d-none d-sm-block">Client</div>
                             <div className="col-2 d-none d-sm-block">Status</div>
-                            {/* <div className="col-2">Month</div> */}
                             <div className="col-2 d-none d-sm-block">Job No</div>
                             <div className="col-4">Revenue({this.state.month.date})</div>
                         </div>
-
                         {this.state.projects && this.state.projects.map((proj, i) =>
                             <div key={i} className="row align-items-center">
 
@@ -96,12 +87,6 @@ class Home extends React.Component {
                                     }
                                 </div>
 
-                                {/* <div key={i + 'd'} className="col-2">
-                                    {this.state.isLoading ? <Spinner isLoading={this.state.isLoading} /> :
-                                        proj.Month
-                                    }
-                                </div> */}
-
                                 <div key={i + 'e'} className="col-2 d-none d-sm-block">
                                     {this.state.isLoading ? <Spinner isLoading={this.state.isLoading} /> :
                                         proj.JobNo
@@ -113,7 +98,6 @@ class Home extends React.Component {
                                         proj.Revenue
                                     }
                                 </div>
-
                             </div>
                         )}
                     </React.Fragment>

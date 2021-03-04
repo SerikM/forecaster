@@ -11,7 +11,6 @@ namespace Forecaster.Controllers
         private const string ErrorMessage = "failed to process request";
         private readonly IProjectService _projectService;
 
-
         public ProjectController(IProjectService projectService)
         {
             _projectService = projectService;
@@ -23,11 +22,11 @@ namespace Forecaster.Controllers
         /// <param name="date"></param>
         /// <returns></returns>
         [HttpGet("{date}")]
-        public  IActionResult Get(string date)
+        public IActionResult Get(string date)
         {
-           var projects =  _projectService.GetProjectsForDate(date);
-           if (projects == null) return BadRequest(ErrorMessage);
-           return Ok(JsonConvert.SerializeObject(projects));
+            var projects = _projectService.GetProjectsForDate(date);
+            if (projects == null) return BadRequest(ErrorMessage);
+            return Ok(JsonConvert.SerializeObject(projects));
         }
 
         /// <summary>
@@ -36,9 +35,9 @@ namespace Forecaster.Controllers
         /// <param name="project"></param>
         /// <returns></returns>
         [HttpPost]
-        public  IActionResult Update([FromBody]Project project)
+        public IActionResult Update([FromBody] Project project)
         {
-            if(project == null) return BadRequest(ErrorMessage);
+            if (project == null) return BadRequest(ErrorMessage);
             if (!_projectService.UpdateProject(project)) return BadRequest(ErrorMessage);
             return Ok();
         }

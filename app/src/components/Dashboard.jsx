@@ -21,7 +21,6 @@ class Dashboard extends React.Component {
         this.setLoading = this.setLoading.bind(this);
     }
 
-
     setLoading(isLoading) {
         this.setState({ isLoading });
     }
@@ -48,7 +47,6 @@ class Dashboard extends React.Component {
             });
     }
 
-
     update(project) {
         this.setLoading(true);
         const client = new httpClient();
@@ -56,13 +54,11 @@ class Dashboard extends React.Component {
             .then(response => {
                 this.setLoading(false);
                 if (response && response.status === 200) {
-                  return this.ensureDataFetched();
+                    return this.ensureDataFetched();
                 }
             })
             .catch((err) => { this.setLoading(false); });
     }
-
-
 
     validate(value, target) {
         if (value && value.length > 20 || !value) {
@@ -95,7 +91,6 @@ class Dashboard extends React.Component {
         this.update(project);
     }
 
-
     updateJobNo(target, projName, elId) {
         this.setState({ current: elId });
         let value = target.value;
@@ -117,18 +112,15 @@ class Dashboard extends React.Component {
     render() {
         return (
             <React.Fragment>
-
                 <div className="main lower">
                     <React.Fragment>
-
-                       <div className="row row-header">
+                        <div className="row row-header">
                             <div className="col-2">Project</div>
                             <div className="col-2 d-none d-sm-block">Client</div>
                             <div className="col-2 d-none d-sm-block">Status</div>
                             <div className="col-2 d-none d-sm-block">Job No</div>
                             <div className="col-4">Revenue({this.state.month.date})</div>
                         </div>
-
                         {this.state.projects && this.state.projects.map((proj, i) =>
                             <div key={i} className="row align-items-center">
 
@@ -157,7 +149,6 @@ class Dashboard extends React.Component {
                                     <input key={`${i}${i}${'e'}`} disabled={this.state.errors && this.state.current !== `${i}${i}${'e'}`}
                                         onChange={(e) => this.updateRevenue(e.target, proj.Name, `${i}${i}${'e'}`)} defaultValue={proj.Revenue} />
                                 </div>
-
 
                             </div>
                         )}

@@ -3,7 +3,6 @@ import { Container, Navbar, NavbarBrand } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import '../index.css';
 
-
 class NavMenu extends React.PureComponent {
     constructor(props) {
         super(props);

@@ -236,3 +236,5 @@ _Pvt_Extensions
 
 /app/node_modules
 /.vscode/tasks.json
+api/src/forecaster/appsettings.Production.json
+api/src/forecaster/appsettings.Development.json

@@ -8,7 +8,7 @@ namespace Data.Sql.Interfaces
     public class BaseRepository<T> : IBaseRepository<T> where T : class, IEntityBase
     {
         private readonly ForecasterContext _context;
-        public BaseRepository(ForecasterContext context) 
+        public BaseRepository(ForecasterContext context)
         {
             _context = context;
         }
@@ -30,7 +30,7 @@ namespace Data.Sql.Interfaces
 
         public IQueryable<T> Get(Expression<Func<T, bool>> predicate)
         {
-          return  _context.Set<T>().Where(predicate);
+            return _context.Set<T>().Where(predicate);
         }
 
         public IQueryable<T> GetAll()
@@ -40,7 +40,7 @@ namespace Data.Sql.Interfaces
 
         public IQueryable<T> GetItemsForParams(int numToTake, int numToSkip)
         {
-          return  _context.Set<T>().Skip(numToSkip).Take(numToTake);
+            return _context.Set<T>().Skip(numToSkip).Take(numToTake);
         }
 
         public IQueryable<T> GetNumOfItemsWithInclude(string propertyName)

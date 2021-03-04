@@ -4,7 +4,6 @@ import httpClient from '../httpClient';
 import Spinner from './Spinner';
 const config = require('../config.json');
 
-
 class Reports extends React.Component {
     constructor(props) {
         super(props);
@@ -16,11 +15,9 @@ class Reports extends React.Component {
             rangeStart: '02.2021',
             rangeEnd: '03.2021'
         }
-
         this.ensureDataFetched = this.ensureDataFetched.bind(this);
         this.setLoading = this.setLoading.bind(this);
     }
-
 
     setLoading(isLoading) {
         this.setState({ isLoading });
@@ -50,10 +47,6 @@ class Reports extends React.Component {
             });
     }
 
-
-
-
-
     render() {
         return (
             <React.Fragment>
@@ -68,25 +61,19 @@ class Reports extends React.Component {
                         }
                     </div>
                 </div>
-
-
                 <div className="main lower">
                     <React.Fragment>
 
                         {this.state.revenues && this.state.revenues.map((br, i) =>
                             <div key={i} className="col-3 col-sm-4 col-md-4">
-                              
-                                {this.state.isLoading ? <Spinner isLoading={this.state.isLoading} /> :
-                                   <span>single month revenue stats to be displayed here</span>
-                                }
-                                
 
+                                {this.state.isLoading ? <Spinner isLoading={this.state.isLoading} /> :
+                                    <span>single month revenue stats to be displayed here</span>
+                                }
                             </div>
                         )}
                     </React.Fragment>
                 </div>
-
-
             </React.Fragment>
         )
     };
