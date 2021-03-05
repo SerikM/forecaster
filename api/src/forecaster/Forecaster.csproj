@@ -6,17 +6,21 @@
     <StartupObject>Forecaster.LocalEntryPoint</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AWSSDK.S3" Version="3.3.110.62" />
+    <PackageReference Include="AWSSDK.S3" Version="3.5.9.2" />
     <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.3.101" />
-    <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="5.1.1" />
-    <PackageReference Include="Amazon.Lambda.APIGatewayEvents" Version="2.1.0" />
-    <PackageReference Include="Amazon.Lambda.Core" Version="1.1.0" />
-    <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.0.1" />
-    <PackageReference Include="AWSXRayRecorder.Core" Version="2.6.2" />
-    <PackageReference Include="AWSXRayRecorder.Handlers.AwsSdk" Version="2.7.2" />
+    <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="5.3.1" />
+    <PackageReference Include="Amazon.Lambda.APIGatewayEvents" Version="2.4.0" />
+    <PackageReference Include="Amazon.Lambda.Core" Version="1.2.0" />
+    <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.1.0" />
+    <PackageReference Include="AWSXRayRecorder.Core" Version="2.10.0" />
+    <PackageReference Include="AWSXRayRecorder.Handlers.AwsSdk" Version="2.8.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\data\Data.csproj" />
