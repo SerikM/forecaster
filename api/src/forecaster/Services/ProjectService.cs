@@ -36,7 +36,7 @@ namespace Forecaster.Services
                     Name = m.Name,
                     Status = m.Status
                 });
-            var total = projects.Sum(d => d.Revenue);
+            var total = projects.ToList().Sum(d => d.Revenue);
             return new { total, projects };
         }
 

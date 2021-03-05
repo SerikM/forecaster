@@ -61,7 +61,7 @@ class Dashboard extends React.Component {
     }
 
     validate(value, target) {
-        if (value && value.length > 20 || !value) {
+        if ((value.length) > 20 || !value) {
             target.style.borderColor = "red";
             this.setState({ errors: true });
             return false;
